@@ -1,7 +1,7 @@
 {
   "name": "funko",
   "version": "0.1.0",
-  "description": "",
+  "description": "Naive minimalistic functional programming library",
   "main": "index.js",
   "directories": {
     "example": "examples"
