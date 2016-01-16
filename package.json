@@ -1,0 +1,40 @@
+{
+  "name": "funko",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "clean": "trash lib",
+    "test": "mocha \"src/**/*.test.js\" --compilers js:babel-register"
+  },
+  "keywords": [
+    "minimalistic",
+    "functional",
+    "programming"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mickvangelderen/funko.git"
+  },
+  "engines": {
+    "node": "^4.0.0",
+    "npm": "^3.0.0"
+  },
+  "author": "Mick van Gelderen",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.4.0",
+    "babel-core": "^6.4.0",
+    "babel-eslint": "^5.0.0-beta6",
+    "babel-preset-es2015-node4": "^2.0.2",
+    "babel-register": "^6.4.3",
+    "eslint_d": "^2.4.0",
+    "mocha": "^2.3.4",
+    "must": "^0.13.1",
+    "trash-cli": "^1.2.0"
+  }
+}
