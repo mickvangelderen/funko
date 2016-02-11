@@ -1,0 +1,38 @@
+{
+  "name": "node-package-skeleton",
+  "version": "0.1.0",
+  "description": "A starting point for a node package.",
+  "main": "lib/index.js",
+  "repository": "https://github.com/mickvangelderen/node-package-skeleton",
+  "scripts": {
+    "build": "babel src --out-dir lib --ignore \"*.test.js\"",
+    "check-node-version": "babel-node tools/check-node-version",
+    "clean": "rm -rf lib",
+    "preversion": "npm test",
+    "pull": "git pull && npm run check-node-version && npm install && npm dedupe && npm outdated",
+    "push": "npm test && git push && git push --tags",
+    "test": "npm run check-node-version && eslint src test && mocha \"{src,test}/**/*.test.js\""
+  },
+  "engines": {
+    "node": "^5.6.0"
+  },
+  "author": {
+    "name": "Mick van Gelderen",
+    "email": "mickvangelderen@gmail.com",
+    "url": "https://github.com:mickvangelderen"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.1",
+    "babel-eslint": "^5.0.0-beta10",
+    "babel-preset-es2015-node5": "^1.1.2",
+    "babel-register": "^6.5.1",
+    "eslint": "^1.10.3",
+    "eslint-plugin-babel": "^3.1.0",
+    "mocha": "^2.4.5",
+    "must": "^0.13.1",
+    "semver": "^5.1.0"
+  }
+}

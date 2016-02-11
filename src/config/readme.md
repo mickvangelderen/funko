@@ -1,0 +1,2 @@
+
+If NODE_ENV is defined, the config will try to require('./environments'). You can create an `environments.js` file or a `environments` directory with an `index.js` file. This is useful if you have several deployment environments. 
