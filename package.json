@@ -9,7 +9,7 @@
     "check-node-version": "babel-node tools/check-node-version",
     "clean": "rm -rf lib",
     "preversion": "npm test",
-    "pull": "git pull && npm run check-node-version && npm install && npm dedupe && npm outdated",
+    "pull": "git pull && npm run check-node-version && npm update && npm dedupe && npm outdated --long",
     "push": "npm test && git push && git push --tags",
     "test": "npm run check-node-version && eslint src test && mocha \"{src,test}/**/*.test.js\""
   },
@@ -25,11 +25,11 @@
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.5.1",
-    "babel-core": "^6.5.1",
+    "babel-core": "^6.5.2",
     "babel-eslint": "^5.0.0-beta10",
     "babel-preset-es2015-node5": "^1.1.2",
-    "babel-register": "^6.5.1",
-    "eslint": "^1.10.3",
+    "babel-register": "^6.5.2",
+    "eslint": "^2.0.0",
     "eslint-plugin-babel": "^3.1.0",
     "mocha": "^2.4.5",
     "must": "^0.13.1",
