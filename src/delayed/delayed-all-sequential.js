@@ -1,7 +1,7 @@
 import Delayed from './delayed'
 
 // [Delayed a] -> Delayed [a]
-export const delayedFromSequential = tasks => 
+export const delayedAllSequential = tasks => 
 	Delayed(resolve => {
 		const values = []
 		const next = index => {
@@ -14,4 +14,4 @@ export const delayedFromSequential = tasks =>
 		next(0)
 	})
 
-export default delayedFromSequential
+export default delayedAllSequential
