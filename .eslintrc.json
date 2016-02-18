@@ -1,12 +1,12 @@
 {
-  "root": true,
-  "extends": "eslint:recommended",
   "env": {
-    "node": true,
-    "es6": true
+    "es6": true,
+    "node": true
   },
+  "extends": "eslint:recommended",
   "parserOptions": {
-  	"ecmaVersion": 6,
-  	"sourceType": "module"
-  }
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "root": true
 }

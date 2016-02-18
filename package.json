@@ -1,28 +1,11 @@
 {
-  "name": "",
-  "version": "0.1.0",
-  "description": "",
-  "main": "lib/index.js",
-  "repository": "",
-  "scripts": {
-    "build": "babel src --out-dir lib --ignore \"*.test.js\"",
-    "check-node-version": "babel-node tools/check-node-version",
-    "clean": "rm -rf lib",
-    "preversion": "npm test",
-    "pull": "git pull && npm run check-node-version && npm update && npm dedupe && npm outdated --long",
-    "push": "npm test && git push && git push --tags",
-    "test": "npm run check-node-version && eslint src test && mocha \"{src,test}/**/*.test.js\""
-  },
-  "engines": {
-    "node": "^5.6.0"
-  },
   "author": {
-    "name": "Mick van Gelderen",
     "email": "mickvangelderen@gmail.com",
+    "name": "Mick van Gelderen",
     "url": "https://github.com/mickvangelderen"
   },
-  "license": "MIT",
   "dependencies": {},
+  "description": "",
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.2",
@@ -34,5 +17,24 @@
     "mocha": "^2.4.5",
     "must": "^0.13.1",
     "semver": "^5.1.0"
-  }
+  },
+  "engines": {
+    "node": "^5.6.0"
+  },
+  "license": "MIT",
+  "main": "lib/index.js",
+  "name": "",
+  "repository": "",
+  "scripts": {
+    "build": "babel src --out-dir lib --ignore \"*.test.js\"",
+    "check-node-version": "babel-node tools/check-node-version",
+    "clean": "rm -rf lib",
+    "lint": "eslint src test",
+    "preversion": "npm test && npm clean && npm build",
+    "pull": "git pull && npm run check-node-version && npm update && npm dedupe && npm outdated --long",
+    "push": "npm test && npm run sort-configuration-files && git push --follow-tags",
+    "sort-configuration-files": "babel-node tools/sort-configuration-files",
+    "test": "npm run check-node-version && npm run lint && mocha \"{src,test}/**/*.test.js\""
+  },
+  "version": "0.1.0"
 }

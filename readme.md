@@ -16,8 +16,10 @@ You can always inspect the `package.json` or issue `npm run` to view the availab
 * `npm run build`: Transpile es2015 to node 5. 
 * `npm run check-node-version`: Check the node version.
 * `npm run clean`: Remove the transpiled code.
+* `npm run lint`: Lint the code.
 * `npm run pull`: Pull code, check version and then install, dedupe, and check for outdated dependencies. 
 * `npm run push`: Test and push code and tags.
+* `npm run sort-configuration-files`: Ease your mind.
 * `npm run test`: Check version, lint and test.
 
 ## Testing
