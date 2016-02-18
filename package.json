@@ -1,9 +1,9 @@
 {
-  "name": "node-package-skeleton",
+  "name": "",
   "version": "0.1.0",
-  "description": "A starting point for a node package.",
+  "description": "",
   "main": "lib/index.js",
-  "repository": "https://github.com/mickvangelderen/node-package-skeleton",
+  "repository": "",
   "scripts": {
     "build": "babel src --out-dir lib --ignore \"*.test.js\"",
     "check-node-version": "babel-node tools/check-node-version",
@@ -19,7 +19,7 @@
   "author": {
     "name": "Mick van Gelderen",
     "email": "mickvangelderen@gmail.com",
-    "url": "https://github.com:mickvangelderen"
+    "url": "https://github.com/mickvangelderen"
   },
   "license": "MIT",
   "dependencies": {},
