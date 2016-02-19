@@ -30,9 +30,10 @@
     "check-node-version": "babel-node tools/check-node-version",
     "clean": "rm -rf lib",
     "lint": "eslint src test",
-    "preversion": "npm test && npm clean && npm build",
-    "pull": "git pull && npm run check-node-version && npm update && npm dedupe && npm outdated --long",
-    "push": "npm test && npm run sort-configuration-files && git push --follow-tags",
+    "post-merge": "npm run check-node-version && npm update && npm dedupe && npm outdated --long",
+    "pre-commit": "npm run sort-configuration-files -- --error-on-changes && npm test",
+    "preversion": "npm run clean && npm run build",
+    "setup": "cp tools/hooks/* .git/hooks/ && git config push.followTags true",
     "sort-configuration-files": "babel-node tools/sort-configuration-files",
     "test": "npm run check-node-version && npm run lint && mocha \"{src,test}/**/*.test.js\""
   },

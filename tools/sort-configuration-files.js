@@ -3,6 +3,8 @@ import Promise from 'bluebird'
 
 Promise.promisifyAll(fs)
 
+const ERROR_ON_CHANGES = process.argv.indexOf('--error-on-changes')
+
 const isArray = Array.isArray
 
 const isObject = value => Object.prototype.toString.call(value) === '[object Object]'
@@ -31,12 +33,12 @@ function sortObjectKeys(input, inputs = [], outputs = []) {
 	return output
 }
 
-function sortJson(buffer) {
-	return JSON.stringify(sortObjectKeys(JSON.parse(buffer)), null, 2)
+function sortJson(string) {
+	return JSON.stringify(sortObjectKeys(JSON.parse(string)), null, 2)
 }
 
-function sortLines(buffer) {
-	return buffer.toString()
+function sortLines(string) {
+	return string
 	.split('\n')
 	.sort()
 	.join('\n')
@@ -48,10 +50,13 @@ function createFileTransformer(transformation) {
 		return fs.readFileAsync(path)
 		.then(buffer => {
 			console.log(`Read "${path}".`) // eslint-disable-line no-console
-			return fs.writeFileAsync(path, transformation(buffer))
-		})
-		.then(() => {
-			console.log(`Wrote "${path}".`) // eslint-disable-line no-console
+			const input = buffer.toString()
+			const output = transformation(input)
+			if (input === output) return false
+			return fs.writeFileAsync(path, output).then(() => {
+				console.log(`Wrote "${path}".`) // eslint-disable-line no-console
+				return true
+			})
 		})
 	}
 }
@@ -67,8 +72,11 @@ Promise.all([
 		'.npmignore'
 	].map(createFileTransformer(sortLines))
 ])
-.then(() => {
+.then(changes => {
 	console.log(`Sorted configuration files.`)  // eslint-disable-line no-console
+	if (ERROR_ON_CHANGES && changes.reduce((l, r) => l || r)) {
+		process.exitCode = 1
+	}
 }, error => {
 	console.error(error)  // eslint-disable-line no-console
 })
