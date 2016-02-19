@@ -3,7 +3,7 @@ import Promise from 'bluebird'
 
 Promise.promisifyAll(fs)
 
-const ERROR_ON_CHANGES = process.argv.indexOf('--error-on-changes')
+const ERROR_ON_CHANGES = process.argv.indexOf('--error-on-changes') !== -1
 
 const isArray = Array.isArray
 
@@ -34,7 +34,7 @@ function sortObjectKeys(input, inputs = [], outputs = []) {
 }
 
 function sortJson(string) {
-	return JSON.stringify(sortObjectKeys(JSON.parse(string)), null, 2)
+	return JSON.stringify(sortObjectKeys(JSON.parse(string)), null, 2) + '\n'
 }
 
 function sortLines(string) {
