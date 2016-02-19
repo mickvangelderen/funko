@@ -1,8 +1,9 @@
 /* eslint-env mocha */
-import hello from './'
 import expect from 'must'
+import hello from './'
+import relativePath from '../test/relative-path'
 
-describe(__filename, () => {
+describe(relativePath(__filename), () => {
 	it('should export a function', () => {
 		expect(hello).to.be.a.function()
 	})
