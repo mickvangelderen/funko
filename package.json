@@ -1,11 +1,11 @@
 {
   "author": {
-    "email": "mickvangelderen@gmail.com",
-    "name": "Mick van Gelderen",
-    "url": "https://github.com/mickvangelderen"
+    "email": "NODE_PACKAGE_SKELETON_AUTHOR_EMAIL",
+    "name": "NODE_PACKAGE_SKELETON_AUTHOR_NAME",
+    "url": "NODE_PACKAGE_SKELETON_AUTHOR_URL"
   },
   "dependencies": {},
-  "description": "",
+  "description": "NODE_PACKAGE_SKELETON_DESCRIPTION",
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.2",
@@ -23,8 +23,8 @@
   },
   "license": "MIT",
   "main": "lib/index.js",
-  "name": "",
-  "repository": "",
+  "name": "NODE_PACKAGE_SKELETON_NAME",
+  "repository": "NODE_PACKAGE_SKELETON_REPOSITORY",
   "scripts": {
     "build": "babel src --out-dir lib --ignore \"*.test.js\"",
     "check-node-version": "babel-node tools/check-node-version",

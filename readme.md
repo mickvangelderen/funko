@@ -1,20 +1,20 @@
 # Usage guide
 
-This guide is for people who want to work on this project as a developer. 
+This guide is for people who want to use NODE_PACKAGE_SKELETON_NAME. 
 
 Other guides:
 * [Development guide](development.md)
 
 # Install
 
-`npm install <PACKAGE_NAME>`
+`npm install NODE_PACKAGE_SKELETON_NAME`
 
 # Usage
 
 ```js
-import <PACKAGE_NAME> from '<PACKAGE_NAME>'
+import NODE_PACKAGE_SKELETON_NAME from 'NODE_PACKAGE_SKELETON_NAME'
 
-<USAGE>
+NODE_PACKAGE_SKELETON_USAGE
 ```
 
 # Thanks
