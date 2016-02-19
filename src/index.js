@@ -1,3 +1,5 @@
-import EXAMPLE_VARIABLE from './config/EXAMPLE_VARIABLE'
+function hello() {
+	return 'Hello World!'
+}
 
-console.log(EXAMPLE_VARIABLE) // eslint-disable-line no-console
+export default hello
