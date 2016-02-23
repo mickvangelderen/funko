@@ -1,18 +1,18 @@
 import curry from './curry'
+import reduce from './reduce'
 
 // (a -> String) -> [a] -> { String -> a }
 const group = curry(2, 
-	(toKey, list) => {
-		const result = {}
-		list.forEach(item => {
+	(toKey, list) => reduce(
+		(map, item) => {
 			const key = toKey(item)
-			const target = result.hasOwnProperty(key) ?
-				result[key] :
-				result[key] = []
+			const target = map.hasOwnProperty(key) ?
+				map[key] :
+				map[key] = []
 			target.push(item)
-		})
-		return result
-	}
+			return map
+		}, {}, list
+	)
 )
 
 export default group
