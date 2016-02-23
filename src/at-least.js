@@ -1,7 +1,7 @@
-import rawCurry from '../internal/raw-curry'
+import curry from './curry'
 
 // Comparable a => a -> a -> Bool
-const atLeast = rawCurry(2,
+const atLeast = curry(2,
 	(b, a) => a >= b
 )
 

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "funko": "^0.2.0"
+  },
+  "description": "Some funko examples.",
+  "name": "funko-examples",
+  "private": true
+}

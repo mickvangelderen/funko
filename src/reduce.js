@@ -1,7 +1,7 @@
-import rawCurry from '../internal/raw-curry'
+import curry from './curry'
 
 // Reducable r => (a -> b -> a) -> a -> r -> b
-const reduce = rawCurry(3, 
+const reduce = curry(3, 
 	(f, a, r) => r.reduce(f, a)
 )
 

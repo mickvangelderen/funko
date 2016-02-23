@@ -1,7 +1,7 @@
-import rawCurry from '../internal/raw-curry'
+import curry from './curry'
 
 // Comparable a => a -> a -> Bool
-const moreThan = rawCurry(2,
+const moreThan = curry(2,
 	(b, a) => a > b
 )
 

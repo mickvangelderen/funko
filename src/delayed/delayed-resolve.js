@@ -1,7 +1,7 @@
-import rawCurry from '../internal/raw-curry'
+import curry from './curry'
 
 // (a -> b) -> Delayed a -> b
-const delayedResolve = rawCurry(2,
+const delayedResolve = curry(2,
 	(resolve, delayed) => delayed.resolve(resolve)
 )
 

@@ -1,7 +1,7 @@
-import rawCurry from '../internal/raw-curry'
+import curry from './curry'
 
 // Mappable a => (a -> b) -> a -> b
-const map = rawCurry(2,
+const map = curry(2,
 	(f, a) => a.map(f)
 )
 

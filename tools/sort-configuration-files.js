@@ -65,11 +65,13 @@ Promise.all([
 	...[
 		'.babelrc',
 		'.eslintrc.json',
+		'examples/package.json',
 		'package.json'
 	].map(createFileTransformer(sortJson)),
 	...[
 		'.gitignore',
-		'.npmignore'
+		'.npmignore',
+		'examples/.gitignore'
 	].map(createFileTransformer(sortLines))
 ])
 .then(changes => {
