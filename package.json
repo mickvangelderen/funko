@@ -1,31 +1,54 @@
 {
-  "name": "funko",
-  "version": "0.1.0",
+  "author": {
+    "email": "mickvangelderen@gmail.com",
+    "name": "Mick van Gelderen",
+    "url": "https://github.com/mickvangelderen"
+  },
+  "dependencies": {
+    "babel-preset-es2015-node4": "^2.0.3"
+  },
   "description": "Naive minimalistic functional programming library",
-  "main": "index.js",
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.2",
+    "babel-eslint": "^5.0.0-beta10",
+    "babel-register": "^6.5.2",
+    "eslint": "^2.0.0",
+    "eslint-plugin-babel": "^3.1.0",
+    "mocha": "^2.4.5",
+    "must": "^0.13.1",
+    "semver": "^5.1.0"
+  },
   "directories": {
     "example": "examples"
   },
-  "scripts": {
-    "build": "babel src --out-dir lib",
-    "clean": "trash lib",
-    "test": "mocha \"src/**/*.test.js\" --compilers js:babel-register"
+  "engines": {
+    "node": "^4.0.0",
+    "npm": "^3.0.0"
   },
   "keywords": [
     "minimalistic",
     "functional",
     "programming"
   ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "name": "funko",
   "repository": {
     "type": "git",
     "url": "https://github.com/mickvangelderen/funko.git"
   },
-  "engines": {
-    "node": "^4.0.0",
-    "npm": "^3.0.0"
+  "scripts": {
+    "build": "babel src --out-dir lib --ignore \"*.test.js\"",
+    "check-node-version": "babel-node tools/check-node-version",
+    "clean": "rm -rf lib",
+    "lint": "eslint src test",
+    "post-merge": "npm run check-node-version && npm update && npm dedupe && npm outdated --long",
+    "pre-commit": "npm run sort-configuration-files -- --error-on-changes && npm test",
+    "preversion": "npm run clean && npm run build",
+    "setup": "cp tools/hooks/* .git/hooks/ && git config push.followTags true",
+    "sort-configuration-files": "babel-node tools/sort-configuration-files",
+    "test": "npm run check-node-version && npm run lint && mocha \"{src,test}/**/*.test.js\""
   },
-  "author": "Mick van Gelderen",
-  "license": "ISC",
-  "devDependencies": {
-  }
+  "version": "0.1.0"
 }
