@@ -1,6 +1,6 @@
-import Failure from './failure'
-import Success from './success'
+import Left from './failure'
+import Right from './success'
 
-const eitherFromNaN = value => isNaN(value) ? Failure(value) : Success(value)
+const eitherFromNaN = value => isNaN(value) ? Left(value) : Right(value)
 
 export default eitherFromNaN

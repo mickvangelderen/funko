@@ -1,7 +1,9 @@
 const Success = value => ({
-	map: f => Success(f(value)),
 	chain: f => f(value),
-	fork: (whenFailure, whenSuccess) => whenSuccess(value)
+	chainFailure: () => Success(value),
+	fork: (whenFailure, whenSuccess) => whenSuccess(value),
+	map: f => Success(f(value)),
+	mapFailure: () => Success(value)
 })
 
 export default Success

@@ -1,6 +1,6 @@
-import Failure from './failure'
-import Success from './success'
+import Left from './failure'
+import Right from './success'
 
-const eitherFromUndefined = value => typeof value === 'undefined' ? Failure(value) : Success(value)
+const eitherFromUndefined = value => value === undefined ? Left(value) : Right(value)
 
 export default eitherFromUndefined

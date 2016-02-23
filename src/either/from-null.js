@@ -1,6 +1,6 @@
-import Failure from './failure'
-import Success from './success'
+import Left from './failure'
+import Right from './success'
 
-const eitherFromNull = value => value === null ? Failure(value) : Success(value)
+const eitherFromNull = value => value === null ? Left(value) : Right(value)
 
 export default eitherFromNull
