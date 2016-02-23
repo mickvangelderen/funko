@@ -2,7 +2,7 @@ import Delayed from '../delayed/delayed'
 import Failure from '../either/failure'
 import Success from '../either/success'
 
-export const wrapAsyncFunction = call =>
+const wrapAsyncFunction = call =>
 	(...args) =>
 		Delayed(resolve => {
 			try {

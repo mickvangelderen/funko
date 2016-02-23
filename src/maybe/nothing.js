@@ -1,4 +1,4 @@
-export const Nothing = () => ({
+const Nothing = () => ({
 	map: () => Nothing(),
 	chain: () => Nothing(),
 	otherwise: value => value

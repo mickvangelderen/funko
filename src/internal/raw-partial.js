@@ -1,4 +1,4 @@
-export const rawPartial = (argu, func) =>
+const rawPartial = (argu, func) =>
 	argu.length === 0 ?
 		func :
 		(...ments) => func(...argu, ...ments)

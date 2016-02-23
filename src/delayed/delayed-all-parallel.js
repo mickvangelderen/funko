@@ -1,7 +1,7 @@
 import Delayed from './delayed'
 
 // [Delayed a] -> Delayed [a]
-export const delayedAllParallel = tasks => 
+const delayedAllParallel = tasks => 
 	Delayed(resolve => {
 		let pending = tasks.length
 		const values = []

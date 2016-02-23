@@ -1,7 +1,7 @@
 import rawCurry from '../internal/raw-curry'
 
-// Subtractable a => a -> a -> a
-export const subtract = rawCurry(2, 
+// Number a => a -> a -> a
+const subtract = rawCurry(2, 
 	(b, a) => a - b
 )
 

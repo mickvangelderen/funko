@@ -1,8 +1,9 @@
 /* eslint-env mocha */
 import expect from 'must'
 import rawCurry from './raw-curry'
+import relativePath from '../../test/relative-path'
 
-describe(__filename, () => {
+describe(relativePath(__filename), () => {
 	it('should rawCurry functions', () => {
 		const f = rawCurry(3, (...args) => {
 			expect(args).to.eql([3, 4, 5])

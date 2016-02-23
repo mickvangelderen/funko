@@ -1,5 +1,0 @@
-export * from './compose'
-export * from './curry'
-export * from './identity'
-export * from './partial'
-export * from './pipe'

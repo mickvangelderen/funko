@@ -1,7 +1,7 @@
 import Just from './just'
 import Nothing from './nothing'
 
-export const maybeFromCatch = func => {
+const maybeFromCatch = func => {
 	try {
 		return Just(func())
 	} catch (error) {
