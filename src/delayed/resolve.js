@@ -1,4 +1,4 @@
-import curry from './curry'
+import curry from '../curry'
 
 // (a -> b) -> Delayed a -> b
 const delayedResolve = curry(2,
