@@ -9,6 +9,7 @@
   "name": "funko-examples",
   "private": true,
   "scripts": {
+    "mkdirp": "babel-node mkdirp.js",
     "quicksort": "babel-node quicksort.js"
   }
 }
