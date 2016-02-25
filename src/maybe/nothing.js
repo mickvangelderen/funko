@@ -1,8 +1,8 @@
 const Nothing = () => ({
 	chain: () => Nothing(),
-	chainNothing: f => f(),
+	chainBoth: f => f(),
+	chainLeft: f => f(),
 	map: () => Nothing(),
-	mapNothing: f => Nothing(f()),
 	otherwise: value => value
 })
 

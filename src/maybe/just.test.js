@@ -9,6 +9,8 @@ describe(relativePath(__filename), () => {
 			expect(Just).to.be.a.function()
 		})
 
+		const throwWhenCalled = () => { throw new Error(`Did not expect this function to be called.`) }
+
 		it('should create an object', () => {
 			const inc = x => x + 1
 			const incJust = x => Just(x + 1)
@@ -21,17 +23,17 @@ describe(relativePath(__filename), () => {
 			expect(b).to.be.an.object()
 			expect(b.otherwise(42)).to.eql(6)
 
-			const c = Just(5).mapNothing(inc)
+			const c = Just(5).chain(incJust)
 			expect(c).to.be.an.object()
-			expect(c.otherwise(42)).to.eql(5)
+			expect(c.otherwise(42)).to.eql(6)
 
-			const d = Just(5).chain(incJust)
+			const d = Just(5).chainLeft(throwWhenCalled)
 			expect(d).to.be.an.object()
-			expect(d.otherwise(42)).to.eql(6)
+			expect(d.otherwise(42)).to.eql(5)
 
-			const e = Just(5).chainNothing(incJust)
+			const e = Just(5).chainBoth(throwWhenCalled, incJust)
 			expect(e).to.be.an.object()
-			expect(e.otherwise(42)).to.eql(5)
+			expect(e.otherwise(42)).to.eql(6)
 		})
 	})
 })

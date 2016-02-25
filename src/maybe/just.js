@@ -1,8 +1,8 @@
 const Just = value => ({
 	chain: f => f(value),
-	chainNothing: () => Just(value),
+	chainBoth: (f, g) => g(value),
+	chainLeft: () => Just(value),
 	map: f => Just(f(value)),
-	mapNothing: () => Just(value),
 	otherwise: () => value
 })
 

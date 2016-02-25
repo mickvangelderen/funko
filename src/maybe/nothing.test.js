@@ -9,27 +9,26 @@ describe(relativePath(__filename), () => {
 			expect(Nothing).to.be.a.function()
 		})
 
-		it('should create an object', () => {
-			const inc = x => x + 1
-			const incNothing = () => Nothing()
+		const throwWhenCalled = () => { throw new Error(`Did not expect this function to be called.`) }
 
+		it('should create an object', () => {
 			const a = Nothing()
 			expect(a).to.be.an.object()
 			expect(a.otherwise(42)).to.eql(42)
 
-			const b = Nothing().map(inc)
+			const b = Nothing().map(throwWhenCalled)
 			expect(b).to.be.an.object()
 			expect(b.otherwise(42)).to.eql(42)
 
-			const c = Nothing().mapNothing(inc)
+			const c = Nothing().chain(throwWhenCalled)
 			expect(c).to.be.an.object()
-			expect(b.otherwise(42)).to.eql(42)
+			expect(c.otherwise(42)).to.eql(42)
 
-			const d = Nothing().chain(incNothing)
+			const d = Nothing().chainLeft(Nothing)
 			expect(d).to.be.an.object()
 			expect(d.otherwise(42)).to.eql(42)
 
-			const e = Nothing().chainNothing(incNothing)
+			const e = Nothing().chainBoth(Nothing, throwWhenCalled)
 			expect(e).to.be.an.object()
 			expect(e.otherwise(42)).to.eql(42)
 		})
