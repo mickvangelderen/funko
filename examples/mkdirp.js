@@ -1,62 +1,45 @@
-import chain from 'funko/lib/chain'
-import curry from 'funko/lib/curry'
-import Delayed from 'funko/lib/delayed'
-import Failure from 'funko/lib/either/failure'
-import forkEither from 'funko/lib/either/fork'
+import chainBoth from 'funko/lib/chain-both'
 import fs from 'fs'
-import map from 'funko/lib/map'
+import Future from 'funko/lib/future'
+import futureFromCallback from 'funko/lib/future/from-callback'
 import path from 'path'
 import pipe from 'funko/lib/pipe'
-import Success from 'funko/lib/either/success'
+import rejected from 'funko/lib/future/rejected'
+import resolved from 'funko/lib/future/resolved'
 
 const parentDirectory = path.dirname
 
-const stat = path => Delayed(resolve =>
-	fs.stat(path, (error, stat) =>
-		resolve(error ? Failure(error) : Success(stat))
+const stat = path =>
+	futureFromCallback(callback => fs.stat(path, callback))
+
+const mkdir = path =>
+	Future((reject, resolve) =>
+		fs.mkdir(path, error =>
+			error ? reject(error) : resolve(path)
+		)
 	)
-)
-
-const mkdir = path => Delayed(resolve =>
-	fs.mkdir(path, error =>
-		resolve(error ? Failure(error) : Success(path))
-	)
-)
-
-const tap = curry(2, (func, value) => {
-	func(value)
-	return value
-})
-
-const delayedValue = value => Delayed(resolve => resolve(value))
 
 const mkdirp = path => pipe([
 	// String
 	stat,
-	// Delayed Either Error Stat
-	chain(
-		// Either Error Stat
-		forkEither(
-			error => error && error.code === 'ENOENT' ?
-				// Path does not exist, create parent path.
-				mkdirp(parentDirectory(path))
-				.chain(() => mkdir(path)) :
-				// Leave other errors intact.
-				delayedValue(Failure(error))
-			,
-			stat => delayedValue(stat.isDirectory() ?
-				// Directory already exists.
-				Success(path) :
-				// Path exists but it is a file.
-				Failure(new Error(`Cannot create directory because ${path} is a file.`))
-			)
-		)
-		// Delayed Either Error String
+	// Future Error Stat
+	chainBoth(
+		error => error && error.code === 'ENOENT' ?
+			// Path does not exist, create parent path.
+			mkdirp(parentDirectory(path))
+			.chain(() => mkdir(path)) :
+			// Leave other errors intact.
+			rejected(error)
+		,
+		stat => stat.isDirectory() ?
+			// Directory already exists.
+			resolved(path) :
+			// Path exists but it is a file.
+			rejected(new Error(`Cannot create directory because ${path} is a file.`))
 	)
+	// Future Error Stat
 ], path)
 
 mkdirp('a/b/c')
-.resolve(forkEither(
-	console.error,
-	console.log
-))
+.fork(console.error, console.log) // eslint-disable-line no-console
+

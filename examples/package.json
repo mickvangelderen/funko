@@ -1,11 +1,14 @@
 {
   "dependencies": {
+    "funko": "^0.3.0"
+  },
+  "description": "Some funko examples.",
+  "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.2",
     "babel-preset-es2015-node4": "^2.0.3",
-    "funko": "^0.2.0"
+    "eslint": "^2.2.0"
   },
-  "description": "Some funko examples.",
   "name": "funko-examples",
   "private": true,
   "scripts": {
