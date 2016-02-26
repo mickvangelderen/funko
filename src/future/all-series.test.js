@@ -6,14 +6,13 @@ import identity from '../identity'
 import relativePath from '../../test/relative-path'
 import Spy from '../../test/spy'
 import SynchronousTimeout from '../../test/synchronous-timeout'
+import throwWhenCalled from '../../test/throw-when-called'
 
 describe(relativePath(__filename), () => {
 	describe('allSeries(futures)', () => {
 		it('should be a function', () => {
 			expect(allSeries).to.be.a.function()
 		})
-
-		const throwWhenCalled = () => { throw new Error(`Did not expect this function to be called.`) }
 
 		let resolve = null
 		let reject = null

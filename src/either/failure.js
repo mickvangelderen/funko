@@ -1,9 +1,11 @@
 const Failure = value => ({
 	chain: () => Failure(value),
-	chainFailure: f => f(value),
+	chainBoth: f => f(value),
+	chainLeft: f => f(value),
 	fork: whenFailure => whenFailure(value),
 	map: () => Failure(value),
-	mapFailure: f => Failure(f(value))
+	mapBoth: f => Failure(f(value)),
+	mapLeft: f => Failure(f(value))
 })
 
 export default Failure

@@ -2,14 +2,13 @@
 import expect from 'must'
 import Nothing from './nothing'
 import relativePath from '../../test/relative-path'
+import throwWhenCalled from '../../test/throw-when-called'
 
 describe(relativePath(__filename), () => {
 	describe('Nothing()', () => {
 		it('should be a function', () => {
 			expect(Nothing).to.be.a.function()
 		})
-
-		const throwWhenCalled = () => { throw new Error(`Did not expect this function to be called.`) }
 
 		it('should create an object', () => {
 			const a = Nothing()

@@ -1,7 +1,7 @@
-import Delayed from './delayed'
+import Delayed from './'
 
 // [Delayed a] -> Delayed [a]
-const delayedParallel = delayeds => 
+const delayedAll = delayeds => 
 	Delayed(resolve => {
 		let pending = delayeds.length
 		const values = []
@@ -12,4 +12,4 @@ const delayedParallel = delayeds =>
 		}))
 	})
 
-export default delayedParallel
+export default delayedAll

@@ -1,4 +1,4 @@
-import Delayed from './delayed'
+import Delayed from './'
 
 // [Delayed a] -> Delayed [a]
 const delayedSequential = tasks => 

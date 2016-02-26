@@ -2,6 +2,8 @@
 import expect from 'must'
 import Failure from './failure'
 import relativePath from '../../test/relative-path'
+import Success from './success'
+import throwWhenCalled from '../../test/throw-when-called'
 
 describe(relativePath(__filename), () => {
 	describe('Failure(value)', () => {
@@ -11,29 +13,68 @@ describe(relativePath(__filename), () => {
 
 		it('should create an object', () => {
 			const id = x => x
-			const just42 = () => 42
 			const inc = x => x + 1
+			const incSuccess = x => Success(x + 1)
 			const incFailure = x => Failure(x + 1)
 
-			const a = Failure(5)
-			expect(a).to.be.an.object()
-			expect(a.fork(id, just42)).to.eql(5)
+			// Fork
 
-			const b = Failure(5).map(inc)
-			expect(b).to.be.an.object()
-			expect(b.fork(id, just42)).to.eql(5)
+			expect(
+				Failure(5)
+				.fork(id, throwWhenCalled)
+			).to.eql(5)
+			
+			// Map
 
-			const c = Failure(5).mapFailure(inc)
-			expect(c).to.be.an.object()
-			expect(c.fork(id, just42)).to.eql(6)
+			expect(
+				Failure(5).map(inc)
+				.fork(id, throwWhenCalled)
+			).to.eql(5)
+			
+			expect(
+				Failure(5).mapLeft(inc)
+				.fork(id, throwWhenCalled)
+			).to.eql(6)
+			
+			expect(
+				Failure(5).mapBoth(inc, throwWhenCalled)
+				.fork(id, throwWhenCalled)
+			).to.eql(6)
+			
+			// Chain into Failure
 
-			const d = Failure(5).chain(incFailure)
-			expect(d).to.be.an.object()
-			expect(d.fork(id, just42)).to.eql(5)
+			expect(
+				Failure(5).chain(incFailure)
+				.fork(id, throwWhenCalled)
+			).to.eql(5)
+			
+			expect(
+				Failure(5).chainLeft(incFailure)
+				.fork(id, throwWhenCalled)
+			).to.eql(6)
+			
+			expect(
+				Failure(5).chainBoth(incFailure, throwWhenCalled)
+				.fork(id, throwWhenCalled)
+			).to.eql(6)
 
-			const e = Failure(5).chainFailure(incFailure)
-			expect(e).to.be.an.object()
-			expect(e.fork(id, just42)).to.eql(6)
+			// Chain into Success
+			
+			expect(
+				Failure(5).chain(incSuccess)
+				.fork(id, throwWhenCalled)
+			).to.eql(5)
+			
+			expect(
+				Failure(5).chainLeft(incSuccess)
+				.fork(throwWhenCalled, id)
+			).to.eql(6)
+			
+			expect(
+				Failure(5).chainBoth(incSuccess, throwWhenCalled)
+				.fork(throwWhenCalled, id)
+			).to.eql(6)
+
 		})
 	})
 })

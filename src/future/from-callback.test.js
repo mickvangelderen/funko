@@ -4,14 +4,13 @@ import fromCallback from './from-callback'
 import identity from '../identity'
 import relativePath from '../../test/relative-path'
 import Spy from '../../test/spy'
+import throwWhenCalled from '../../test/throw-when-called'
 
 describe(relativePath(__filename), () => {
 	describe('fromCallback(creator)', () => {
 		it('should be a function', () => {
 			expect(fromCallback).to.be.a.function()
 		})
-
-		const throwWhenCalled = () => { throw new Error(`Did not expect this function to be called.`) }
 
 		let resolve = null
 		let reject = null

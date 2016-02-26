@@ -1,14 +1,14 @@
 /* eslint-env mocha */
+import all from './all'
 import Delayed from './'
 import expect from 'must'
-import parallel from './parallel'
 import relativePath from '../../test/relative-path'
 import SynchronousTimeout from '../../test/synchronous-timeout'
 
 describe(relativePath(__filename), () => {
-	describe('parallel(delayeds)', () => {
+	describe('all(delayeds)', () => {
 		it('should be a function', () => {
-			expect(parallel).to.be.a.function()
+			expect(all).to.be.a.function()
 		})
 
 		let delayedValue = null
@@ -24,7 +24,7 @@ describe(relativePath(__filename), () => {
 
 		it('should resolve delayeds in parallel', () => {
 			let result = null
-			parallel([
+			all([
 				delayedValue('ten', 10),
 				delayedValue('twenty', 20),
 				delayedValue('ten', 10).chain(() => delayedValue('thirty', 20))

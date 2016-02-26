@@ -12,12 +12,12 @@ const futureAllSeries = futures =>
 			}
 			futures[index].fork(
 				error => {
-					if (done) return
+					if (done) { return }
 					done = true
 					reject(error)
 				},
 				value => {
-					if (done) return
+					if (done) { return }
 					values[index] = value
 					next(index + 1)
 				})

@@ -5,6 +5,7 @@ import Future from './'
 import identity from '../identity'
 import relativePath from '../../test/relative-path'
 import Spy from '../../test/spy'
+import throwWhenCalled from '../../test/throw-when-called'
 
 describe(relativePath(__filename), () => {
 	describe('Future(task)', () => {
@@ -15,7 +16,6 @@ describe(relativePath(__filename), () => {
 		const double = n => 2*n
 		const rejected = value => Future(reject => reject(value))
 		const resolved = value => Future((reject, resolve) => resolve(value))
-		const throwWhenCalled = () => { throw new Error(`Did not expect this function to be called.`) }
 
 		let resolve = null
 		let reject = null

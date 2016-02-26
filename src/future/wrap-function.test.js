@@ -1,17 +1,16 @@
 /* eslint-env mocha */
 import expect from 'must'
-import wrapFunction from './wrap-function'
 import identity from '../identity'
 import relativePath from '../../test/relative-path'
 import Spy from '../../test/spy'
+import throwWhenCalled from '../../test/throw-when-called'
+import wrapFunction from './wrap-function'
 
 describe(relativePath(__filename), () => {
 	describe('wrapFunction(func)', () => {
 		it('should be a function', () => {
 			expect(wrapFunction).to.be.a.function()
 		})
-
-		const throwWhenCalled = () => { throw new Error(`Did not expect this function to be called.`) }
 
 		let resolve = null
 		let reject = null

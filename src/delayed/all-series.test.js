@@ -2,13 +2,13 @@
 import Delayed from './'
 import expect from 'must'
 import relativePath from '../../test/relative-path'
-import sequential from './sequential'
+import allSeries from './all-series'
 import SynchronousTimeout from '../../test/synchronous-timeout'
 
 describe(relativePath(__filename), () => {
-	describe('sequential(delayeds)', () => {
+	describe('allSeries(delayeds)', () => {
 		it('should be a function', () => {
-			expect(sequential).to.be.a.function()
+			expect(allSeries).to.be.a.function()
 		})
 
 		let delayedValue = null
@@ -22,9 +22,9 @@ describe(relativePath(__filename), () => {
 			advance = o.advance
 		})
 
-		it('should resolve delayeds in sequential', () => {
+		it('should resolve delayeds in series', () => {
 			let result = null
-			sequential([
+			allSeries([
 				delayedValue('ten', 10),
 				delayedValue('twenty', 20),
 				delayedValue('ten', 10).chain(() => delayedValue('thirty', 20))

@@ -8,7 +8,7 @@ import { _partial } from './curry'
 describe(relativePath(__filename), () => {
 	describe('_partial(argu, func)', () => {
 		it('should return the same function when applying 0 arguments', () => {
-			const f = (a, b, c) => a + b*c
+			const f = () => {}
 			expect(_partial([], f)).to.equal(f)
 		})
 		it('should _partially apply arguments', () => {
