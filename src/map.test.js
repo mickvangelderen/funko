@@ -4,29 +4,19 @@ import map from './map'
 import relativePath from '../test/relative-path'
 
 describe(relativePath(__filename), () => {
-	describe('map(func, mappable)', () => {
+	describe('map(func, thing)', () => {
 		it('should be a function', () => {
 			expect(map).to.be.a.function()
 		})
 
-		let inc = null
-		let list = null
-		let result = null
+		const inc = x => x + 1
 
-		beforeEach(() => {
-			inc = x => x + 1
-			list = [3, 4, 5]
-			result = [4, 5, 6]
-		})
-
-		it('should map over a list', () => {
-			expect(map(inc, list)).to.eql(result)
+		it('should call map on mappable', () => {
+			expect(map(inc, { map: f => f(1) })).to.eql(2)
 		})
 
 		it('should be curried', () => {
-			const m = map(inc)
-			expect(m).to.be.a.function()
-			expect(m(list)).to.eql(result)
+			expect(map(inc)({ map: f => f(1) })).to.eql(2)
 		})
 	})
 })
