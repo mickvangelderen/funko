@@ -12,4 +12,4 @@ assert(typeof pattern === 'string', `Expected "engines" object in package.json t
 
 const value = process.versions.node
 
-assert(semver.satisfies(value, pattern), `Expected node version to satisfy semver ${pattern} but got ${value}.`)
+assert(semver.satisfies(value, pattern), `Expected node version to satisfy semver ${pattern} but got ${value}. Install the correct version and issue "npm run post-merge".`)
