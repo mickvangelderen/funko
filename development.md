@@ -23,6 +23,7 @@ You can always inspect the `package.json` or issue `npm run` to view the availab
 * `npm run check-node-version`: Check your node version.
 * `npm run clean`: Remove built assets.
 * `npm run lint`: Check code syntax and style. 
+* `npm run post-merge`: Run when you resume working on your package.
 * `npm run setup`: Run after cloning.
 * `npm run sort-configuration-files`: Sort files to minimize merge conflicts.
 * `npm run test`: Check version, lint and test.
