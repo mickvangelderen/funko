@@ -31,7 +31,7 @@
     "check-node-version": "babel-node tools/check-node-version",
     "clean": "rm -rf lib",
     "lint": "eslint src test",
-    "post-merge": "npm run check-node-version && npm update && npm dedupe && npm outdated --long",
+    "post-merge": "npm update && npm run check-node-version && npm dedupe && npm outdated --long",
     "pre-commit": "npm run sort-configuration-files -- --error-on-changes && npm test",
     "preversion": "npm run clean && npm run build",
     "setup": "cp tools/hooks/* .git/hooks/ && git config push.followTags true",
