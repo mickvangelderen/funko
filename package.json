@@ -48,5 +48,5 @@
     "sort-configuration-files": "babel-node tools/sort-configuration-files",
     "test": "npm run check-node-version && npm run lint && mocha \"{src,test}/**/*.test.js\""
   },
-  "version": "0.3.1"
+  "version": "0.4.0"
 }
