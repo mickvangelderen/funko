@@ -1,6 +1,6 @@
 import fromCallback from './from-callback'
 
-const futureWrapFunction = func =>
+const futureWrapCallback = func =>
 	(...args) => fromCallback(callback => func(...args, callback))
 
-export default futureWrapFunction
+export default futureWrapCallback
