@@ -11,11 +11,14 @@
     "babel-core": "^6.5.2",
     "babel-preset-es2015-node4": "^2.0.3",
     "babel-register": "^6.5.2",
+    "chalk": "^1.1.1",
     "eslint": "^2.0.0",
     "funko": "^0.4.0",
     "funko-fs": "^0.2.0",
     "glob": "^7.0.3",
+    "log-2000": "^0.1.7",
     "mocha": "^2.4.5",
+    "moment": "^2.12.0",
     "must": "^0.13.1",
     "semver": "^5.1.0",
     "sort-object-circular": "^0.1.1"
@@ -33,12 +36,12 @@
     "check-node-version": "babel-node tools/check-node-version",
     "clean": "rm -rf lib",
     "lint": "eslint src test",
-    "post-merge": "npm update && npm run check-node-version && npm prune && npm dedupe && npm outdated --long",
-    "pre-commit": "npm run sort-configuration-files -- --error-on-changes && npm test",
-    "preversion": "npm run clean && npm run build",
+    "post-merge": "npm update && npm run -s check-node-version && npm prune && npm dedupe && npm outdated --long",
+    "pre-commit": "npm run -s sort-configuration-files -- --error-on-changes && npm test",
+    "preversion": "npm run -s clean && npm run -s build",
     "setup": "cp tools/hooks/* .git/hooks/ && git config push.followTags true",
     "sort-configuration-files": "babel-node tools/sort-configuration-files",
-    "test": "npm run check-node-version && npm run lint && mocha \"{src,test}/**/*.test.js\""
+    "test": "npm run -s check-node-version && npm run -s lint && mocha \"{src,test}/**/*.test.js\""
   },
   "version": "0.1.0"
 }
