@@ -36,12 +36,14 @@
     "check-node-version": "babel-node tools/check-node-version",
     "clean": "rm -rf lib",
     "lint": "eslint src test",
-    "post-merge": "npm update && npm run -s check-node-version && npm prune && npm dedupe && npm outdated --long",
+    "post-checkout": "npm run -s update",
+    "post-merge": "npm run -s update",
     "pre-commit": "npm run -s sort-configuration-files -- --error-on-changes && npm test",
     "preversion": "npm run -s clean && npm run -s build",
     "setup": "cp tools/hooks/* .git/hooks/ && git config push.followTags true",
     "sort-configuration-files": "babel-node tools/sort-configuration-files",
-    "test": "npm run -s check-node-version && npm run -s lint && mocha \"{src,test}/**/*.test.js\""
+    "test": "npm run -s check-node-version && npm run -s lint && mocha \"{src,test}/**/*.test.js\"",
+    "update": "npm update && npm run -s check-node-version && npm prune && npm dedupe && npm outdated --long"
   },
   "version": "0.1.0"
 }
