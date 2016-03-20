@@ -26,5 +26,14 @@ describe(relativePath(__filename), () => {
 			future.fork(throwWhenCalled, onResolve)
 			expect(onResolve.calls).to.eql([ [ 42 ] ])
 		})
+
+		it('should not swallow errors', () => {
+			const return42 = () => 42
+			expect(() => 
+				fromCatchable(return42)
+				.map(() => { throw 69 })
+				.fork(throwWhenCalled, throwWhenCalled)
+			).to.throw(69)
+		})
 	})
 })

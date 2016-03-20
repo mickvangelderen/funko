@@ -32,5 +32,13 @@ describe(relativePath(__filename), () => {
 			expect(returnValue.calls).to.eql([ [ 42, 'my', 'old', 'friend' ] ])
 			expect(onResolve.calls).to.eql([ [ 42 ] ])
 		})
+
+		it('should not swallow errors', () => {
+			expect(() => 
+				wrapCatchable(x => x)(42)
+				.map(() => { throw 69 })
+				.fork(throwWhenCalled, throwWhenCalled)
+			).to.throw(69)
+		})
 	})
 })
