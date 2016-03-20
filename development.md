@@ -23,9 +23,18 @@ You can always inspect the `package.json` or issue `npm run` to view the availab
 * `npm run check-node-version`: Check your node version.
 * `npm run clean`: Remove built assets.
 * `npm run lint`: Check code syntax and style. 
+* `npm run resume`: Run when you resume working on your package.
 * `npm run setup`: Run after cloning.
-* `npm run sort-configuration-files`: Sort files to minimize merge conflicts.
+* `npm run sort`: Sort files to minimize merge conflicts.
 * `npm run test`: Check version, lint and test.
+
+## Hooks
+
+The following git hooks are installed by running `npm run setup`:
+
+* [post-checkout](tools/hooks/post-checkout): Simply runs `npm run post-checkout`.
+* [post-merge](tools/hooks/post-merge): Simply runs `npm run post-merge`.
+* [pre-commit](tools/hooks/pre-commit): Simply runs `npm run pre-commit`.
 
 ## Versioning and publishing
 
