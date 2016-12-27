@@ -38,7 +38,7 @@ class Future {
 	mapBoth(leftMapper, rightMapper) {
 		assertFunction(leftMapper)
 		assertFunction(rightMapper)
-		return new Future((reject, resolve) => 
+		return new Future((reject, resolve) =>
 			this._task(
 				value => reject(leftMapper(value)),
 				value => resolve(rightMapper(value))
@@ -55,7 +55,7 @@ class Future {
 
 	chainLeft(leftChainer) {
 		assertFunction(leftChainer)
-		return new Future((reject, resolve) => 
+		return new Future((reject, resolve) =>
 			this._task(value => assertForkable(leftChainer(value)).fork(reject, resolve), resolve)
 		)
 	}
@@ -63,7 +63,7 @@ class Future {
 	chainBoth(leftChainer, rightChainer) {
 		assertFunction(leftChainer)
 		assertFunction(rightChainer)
-		return new Future((reject, resolve) => 
+		return new Future((reject, resolve) =>
 			this._task(
 				value => assertForkable(leftChainer(value)).fork(reject, resolve),
 				value => assertForkable(rightChainer(value)).fork(reject, resolve)
